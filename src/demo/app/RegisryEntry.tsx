@@ -1,12 +1,14 @@
 import React from 'react';
-import {RegistryEntryType} from './types';
+import {RegistryEntryAddType} from './types';
 
-function RegisryEntry({name, age, country}: RegistryEntryType) {
+function RegisryEntry({id, name, age, country, onClick}: RegistryEntryAddType) {
 
     return <tr>
+        <td> {id}</td>
         <td> {name}</td>
         <td> {age}</td>
         <td> {country}</td>
+        <td> <button onClick={(event) => onClick(event, id)} type="button"> - </button> </td>
     </tr>
 
 }

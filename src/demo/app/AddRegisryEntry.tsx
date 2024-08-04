@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Location, useLocation, useNavigate} from 'react-router-dom';
 import '../../App.css';
-import { ContextInfo } from './ContextInfo';
+import {ContextInfo} from './ContextInfo';
 import {RegistryEntryType} from './types';
 
 
 function AddRegisryEntry() {
 
     const navigate = useNavigate();
-    const location = useLocation();
+    const location: Location<RegistryEntryType[]> = useLocation();
     const [regisryEntry, setRegisryEntry] = useState<RegistryEntryType>({});
 
     return (
@@ -31,6 +31,10 @@ function AddRegisryEntry() {
             <div>
                 <button onClick={() => {
 //debugger;
+//                     let rg : RegistryEntryType = {id:null,
+//                         name: regisryEntry.name,
+//                         age: regisryEntry.age,
+//                         country: regisryEntry.country, }
                     location.state.push(regisryEntry)
                     navigate('/registry', {replace: false, state: location.state})
                 }

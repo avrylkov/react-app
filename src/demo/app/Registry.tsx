@@ -2,15 +2,20 @@ import React, {useState} from 'react';
 import {RegistryEntryType} from './types';
 import RegisryEntry from './RegisryEntry';
 import {ContextInfo} from "./ContextInfo"
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate, Location} from 'react-router-dom';
 
 function Registry() {
 
-    const location = useLocation();
+    const location: Location<RegistryEntryType[]> = useLocation();
     const navigate = useNavigate();
     const heading = ["Name", "Age", "Сountry"];
-    const [regisryEntries, setRegisryEntries] = useState<RegistryEntryType[]>(location.state === null
+    const [regisryEntries, setRegistryEntries] = useState<RegistryEntryType[]>(location.state === null
         ? [{}] : location.state)
+
+    function handleClickDelete(event: any, index: number) {
+        regisryEntries.splice(index, 1)
+        setRegistryEntries(regisryEntries.map(a => ({...a})));
+    }
 
     return (
         <div> Regisry
@@ -31,9 +36,13 @@ function Registry() {
                     </tr>
                     </thead>
                     <tbody>
-                    {regisryEntries.map((rowContent) => (
-                        <RegisryEntry name={rowContent.name} age={rowContent.age}
-                                      country={rowContent.country}></RegisryEntry>
+                    {regisryEntries.map((rowContent, index) => (
+                        <RegisryEntry id={index}
+                                      name={rowContent.name}
+                                      age={rowContent.age}
+                                      country={rowContent.country}
+                                      onClick={handleClickDelete}
+                        ></RegisryEntry>
                     ))}
                     </tbody>
                 </table>
