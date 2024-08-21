@@ -1,29 +1,40 @@
 import React, {useState} from 'react';
-import {RegistryEntryType} from './types';
+import {ModalDialogState, RegistryEntryType} from './types';
 import RegisryEntry from './RegisryEntry';
 import {ContextInfo} from "./ContextInfo"
 import {useLocation, useNavigate, Location} from 'react-router-dom';
+import ModalDialog from "./ModalDialog";
 
 function Registry() {
 
     const location: Location<RegistryEntryType[]> = useLocation();
     const navigate = useNavigate();
     const heading = ["Name", "Age", "Сountry"];
-    const [regisryEntries, setRegistryEntries] = useState<RegistryEntryType[]>(location.state === null
+    const [registryEntries, setRegistryEntries] = useState<RegistryEntryType[]>(location.state === null
         ? [{}] : location.state)
+    const [modalDialogState, setModalDialogState] = useState<ModalDialogState>({isOpen: false, index:0});
 
-    function handleClickDelete(event: any, index: number) {
-        regisryEntries.splice(index, 1)
-        setRegistryEntries(regisryEntries.map(a => ({...a})));
+    function handleClickDelete(event: any, index: number, isConfirm: boolean) {
+        if (isConfirm) {
+            registryEntries.splice(index, 1)
+            let cloneRegistry = [...registryEntries]
+            setRegistryEntries(cloneRegistry);
+        }
+        setModalDialogState({isOpen: false, index});
+    }
+
+    function openConfirmDialog(event: any, index: number) {
+        //debugger
+        setModalDialogState({isOpen: true, index});
     }
 
     return (
-        <div> Regisry
+        <div> Registry
             <div>
                 <ContextInfo/>
                 <div/>
                 <button onClick={() => {
-                    navigate('add', {replace: false, state: regisryEntries})
+                    navigate('add', {replace: false, state: registryEntries})
                 }
                 }> Добавить </button>
                 <div/>
@@ -36,16 +47,17 @@ function Registry() {
                     </tr>
                     </thead>
                     <tbody>
-                    {regisryEntries.map((rowContent, index) => (
+                    {registryEntries.map((rowContent, index) => (
                         <RegisryEntry id={index}
                                       name={rowContent.name}
                                       age={rowContent.age}
                                       country={rowContent.country}
-                                      onClick={handleClickDelete}
+                                      onShowConfirm={openConfirmDialog}
                         ></RegisryEntry>
                     ))}
                     </tbody>
                 </table>
+                <ModalDialog isOpen={modalDialogState.isOpen} index={modalDialogState.index} onConfirm={handleClickDelete}></ModalDialog>
             </div>
         </div>
     )
