@@ -30,5 +30,21 @@ export type UserContextType = {
     saveLogin: (login: string) => void;
 }
 
+export type IamToken = {
+    iamToken: string
+    expiresAt: string
+}
+
+export type Translations = {
+    code: number
+    message: string
+    translations: [
+        {
+            text: string
+            detectedLanguageCode: string
+        }
+    ]
+}
+
 export type Children = { children: React.ReactNode };
 

@@ -4,6 +4,7 @@ import RegisryEntry from './RegisryEntry';
 import {ContextInfo} from "./ContextInfo"
 import {useLocation, useNavigate, Location} from 'react-router-dom';
 import ModalDialog from "./ModalDialog";
+import Translation from "./Translation";
 
 function Registry() {
 
@@ -58,6 +59,7 @@ function Registry() {
                     </tbody>
                 </table>
                 <ModalDialog isOpen={modalDialogState.isOpen} index={modalDialogState.index} onConfirm={handleClickDelete}></ModalDialog>
+                <Translation></Translation>
             </div>
         </div>
     )
