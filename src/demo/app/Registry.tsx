@@ -30,14 +30,17 @@ function Registry() {
     }
 
     return (
-        <div> Registry
+        <div><p></p>
+            <b>Registry</b>
+            <ContextInfo/>
+            <p>--------</p>
             <div>
-                <ContextInfo/>
                 <div/>
                 <button onClick={() => {
                     navigate('add', {replace: false, state: registryEntries})
                 }
-                }> Добавить </button>
+                }> Добавить
+                </button>
                 <div/>
                 <table>
                     <thead>
@@ -58,7 +61,8 @@ function Registry() {
                     ))}
                     </tbody>
                 </table>
-                <ModalDialog isOpen={modalDialogState.isOpen} index={modalDialogState.index} onConfirm={handleClickDelete}></ModalDialog>
+                <ModalDialog isOpen={modalDialogState.isOpen} index={modalDialogState.index}
+                             onConfirm={handleClickDelete}></ModalDialog>
                 <Translation></Translation>
             </div>
         </div>

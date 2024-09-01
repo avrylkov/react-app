@@ -55,6 +55,7 @@ function Translation() {
 
     return (
         <div>
+            <p>---------</p>
             <label htmlFor="query">Yandex translations </label>
             <input
                 name="query"

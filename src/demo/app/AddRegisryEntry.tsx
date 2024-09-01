@@ -13,32 +13,43 @@ function AddRegisryEntry() {
 
     return (
         <div>
+            <p></p>
             <ContextInfo/>
+            <p>-------</p>
             <label htmlFor="name">Имя</label>
-            <input name="name" type="text" onChange={ (eventOnChangeProp) => {
-                setRegisryEntry({name: eventOnChangeProp.target.value, age : regisryEntry.age, country : regisryEntry.country})
+            <input name="name" type="text" onChange={(eventOnChangeProp) => {
+                setRegisryEntry({
+                    name: eventOnChangeProp.target.value,
+                    age: regisryEntry.age,
+                    country: regisryEntry.country
+                })
             }}/>
             <div/>
             <label htmlFor="age">Возраст</label>
-            <input name="age" type="text" onChange={ (eventOnChangeProp) => {
-                setRegisryEntry({name: regisryEntry.name, age: Number.parseInt(eventOnChangeProp.target.value), country: regisryEntry.country})
+            <input name="age" type="text" onChange={(eventOnChangeProp) => {
+                setRegisryEntry({
+                    name: regisryEntry.name,
+                    age: Number.parseInt(eventOnChangeProp.target.value),
+                    country: regisryEntry.country
+                })
             }}/>
             <div/>
             <label htmlFor="country">Страна</label>
-            <input name="country" type="text"onChange={ (eventOnChangeProp) => {
-                setRegisryEntry({name: regisryEntry.name, age: regisryEntry.age, country: eventOnChangeProp.target.value})
+            <input name="country" type="text" onChange={(eventOnChangeProp) => {
+                setRegisryEntry({
+                    name: regisryEntry.name,
+                    age: regisryEntry.age,
+                    country: eventOnChangeProp.target.value
+                })
             }}/>
             <div>
+                <p></p>
                 <button onClick={() => {
-//debugger;
-//                     let rg : RegistryEntryType = {id:null,
-//                         name: regisryEntry.name,
-//                         age: regisryEntry.age,
-//                         country: regisryEntry.country, }
                     location.state.push(regisryEntry)
                     navigate('/registry', {replace: false, state: location.state})
                 }
-                }>Добавить</button>
+                }>Добавить
+                </button>
             </div>
         </div>
     )
