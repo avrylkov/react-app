@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/avrylkov/react-app/static/css/main.f855e6bc.css",
+    "main.js": "/avrylkov/react-app/static/js/main.2b14916a.js",
+    "index.html": "/avrylkov/react-app/index.html",
+    "main.f855e6bc.css.map": "/avrylkov/react-app/static/css/main.f855e6bc.css.map",
+    "main.2b14916a.js.map": "/avrylkov/react-app/static/js/main.2b14916a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.2b14916a.js"
+  ]
+}
